@@ -1,16 +1,23 @@
-# TODO 1: Set the minimum required version of CMake to be 3.10
+#设置最低可以使用的cmake版本 3.10
+cmake_minimum_required(VERSION 3.10)
+#设置工程名 Tutorial 版本 1.0
+project(Tutorial
+    VERSION 1.0)
 
-# TODO 2: Create a project named Tutorial
+#设置C++版本 11
+set(CMAKE_CXX_STANDARD 11)
+#要求使用设置的 CMAKE_CXX_STANDARD版本标准
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# TODO 7: Set the project version number as 1.0 in the above project command
+#将TutorialConfig.h.in 复制并修改为TutorialConfig.h
+configure_file(TutorialConfig.h.in TutorialConfig.h)
 
-# TODO 6: Set the variable CMAKE_CXX_STANDARD to 11
-#         and the variable CMAKE_CXX_STANDARD_REQUIRED to True
+#添加可执行文件 Tutorial 源于tutorial.cxx
+add_executable(Tutorial tutorial.cxx)
+#添加对应可执行文件夹的库引用地址 PROJECT_BINARY_DIR
+target_include_directories(Tutorial PUBLIC
+                            "${PROJECT_BINARY_DIR}"
+                            )
 
-# TODO 8: Use configure_file to configure and copy TutorialConfig.h.in to
-#         TutorialConfig.h
 
-# TODO 3: Add an executable called Tutorial to the project
-# Hint: Be sure to specify the source file as tutorial.cxx
-
-# TODO 9: Use target_include_directories to include ${PROJECT_BINARY_DIR}
+#不要随便添加空格
